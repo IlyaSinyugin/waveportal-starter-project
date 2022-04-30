@@ -2,15 +2,26 @@ import * as React from "react";
 import { ethers } from "ethers";
 import './App.css';
 
-export default function App() {
+const App = () => {
+  const checkIfWalletIsConnected = () => {
+    /*
+    * Check if we have acce to window.ethereum
+    */
+   const {ethereum} = window;
 
-  const wave = () => {
-    
+   if (!ethereum) {
+     console.log("Make sure you have Metamask!");
+   } else {
+     console.log("We have the Ethereum object", ethereum);
+   }
   }
+  
+  React.useEffect(() => {
+    checkIfWalletIsConnected();
+  }, [])
   
   return (
     <div className="mainContainer">
-
       <div className="dataContainer">
         <div className="header">
         👋 Hellooo!
@@ -26,3 +37,5 @@ export default function App() {
     </div>
   );
 }
+
+export default App
